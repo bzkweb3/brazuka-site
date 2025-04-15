@@ -1,0 +1,33 @@
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  color: #222;
+  text-align: center;
+}
+
+header {
+  background: #004d40;
+  color: white;
+  padding: 2rem 1rem;
+}
+
+.hero, .coin {
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+img {
+  max-width: 300px;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}
+
+footer {
+  margin-top: 3rem;
+  padding: 1rem;
+  background: #222;
+  color: #ddd;
+}
