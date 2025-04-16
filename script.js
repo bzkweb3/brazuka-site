@@ -41,7 +41,7 @@ async function mostrarSaldoBRAZ() {
   const signer = provider.getSigner();
   const address = await signer.getAddress();
   
-  const tokenAddress = "0x935814ff77528d57ae6fc94bc70f09eacc89cede"; // Coloque o endereço do contrato BRAZUKA
+  const tokenAddress = "0xD9E90DF21F4229249E8841580cDE7048bF935710"; // Coloque o endereço do contrato BRAZUKA
   const contract = new ethers.Contract(tokenAddress, tokenABI, provider);
 
   const rawBalance = await contract.balanceOf(address);
