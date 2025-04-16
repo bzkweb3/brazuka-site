@@ -15,48 +15,45 @@ body {
 }
 
 /* HEADER */
+/* Adicione isso no topo do seu CSS ou dentro de um bloco adequado */
 header {
+  position: relative;
   text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(to bottom, #00ff88, #111); /* Verde vibrante até preto */
-  border-bottom: 2px solid #FFD700;
+  color: white;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #000000, #007f00); /* Degradê preto/verde */
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
 }
 
 header img {
+  max-width: 200px;
+  z-index: 2;
+  position: relative;
+}
+
+header h1, header p, .cta {
+  position: relative;
+  z-index: 2;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
+  background-image: url('images/banner-topo.jpg'); /* Substitua com seu banner se quiser */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3; /* Transparência para dar destaque ao texto */
+  z-index: 0;
 }
 
-header h1 {
-  font-size: 2.8rem;
-  color: #FFD700;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-}
 
-header p {
-  font-size: 1.2rem;
-  color: #ccc;
-}
 
-.cta {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #FFD700;
-  color: #111;
-  font-weight: bold;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
-.cta:hover {
-  background-color: #e6c200;
-}
 
 /* SECTIONS */
 section {
