@@ -20,6 +20,14 @@ async function connectWallet() {
       const shortened = `${address.slice(0, 6)}...${address.slice(-4)}`;
 document.getElementById("wallet-address").innerText = `Conectado: ${shortened}`;
       document.querySelector('button.cta').innerText = "Wallet Conectada";
+      // ...
+const shortened = `${address.slice(0, 6)}...${address.slice(-4)}`;
+document.getElementById("wallet-address").innerText = `Conectado: ${shortened}`;
+document.querySelector('button.cta').innerText = "Wallet Conectada";
+
+await mostrarSaldoBRAZ(); // <- Adicione isso aqui
+
+console.log("Conexão estabelecida:", address);
 
       console.log("Conexão estabelecida:", address);
     } catch (err) {
