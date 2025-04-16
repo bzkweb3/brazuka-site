@@ -1,14 +1,23 @@
 console.log("Site Brazuka carregado com sucesso!");
 
-// Função para conectar a carteira MetaMask
+// ABI mínima para consultar saldo e decimais do token
+const tokenABI = [
+  "function balanceOf(address owner) view returns (uint256)",
+  "function decimals() view returns (uint8)"
+];
+
+// Endereço do contrato do token BRAZUKA
+const tokenAddress = "0xD9E90DF21F4229249E8841580cDE7048bF935710";
+
+// Conecta a carteira MetaMask e troca para a rede BSC se necessário
 async function connectWallet() {
   if (typeof window.ethereum !== 'undefined') {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+
     try {
       await provider.send("eth_requestAccounts", []);
-
-      // Verifica a rede e tenta trocar para a BSC, se necessário
       const network = await provider.getNetwork();
+
       if (network.chainId !== 56) {
         await switchToBSC();
       }
@@ -16,13 +25,15 @@ async function connectWallet() {
       const signer = provider.getSigner();
       const address = await signer.getAddress();
 
-      // Mostra o endereço conectado no HTML
+      // Exibe endereço encurtado
       const shortened = `${address.slice(0, 6)}...${address.slice(-4)}`;
       document.getElementById("wallet-address").innerText = `Conectado: ${shortened}`;
       document.querySelector('button.cta').innerText = "Wallet Conectada";
-      await mostrarSaldoBRAZ(); // <- Adicione isso aqui
 
       console.log("Conexão estabelecida:", address);
+
+      // Mostra saldo BRAZ após conectar
+      await mostrarSaldoBRAZ();
     } catch (err) {
       alert("Erro ao conectar ou trocar rede.");
       console.error(err);
@@ -32,27 +43,26 @@ async function connectWallet() {
   }
 }
 
-const tokenABI = [
-  "function balanceOf(address owner) view returns (uint256)",
-  "function decimals() view returns (uint8)"
-];
-
+// Consulta e exibe o saldo de BRAZ
 async function mostrarSaldoBRAZ() {
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const signer = provider.getSigner();
-  const address = await signer.getAddress();
-  
-  const tokenAddress = "0xD9E90DF21F4229249E8841580cDE7048bF935710"; // Coloque o endereço do contrato BRAZUKA
-  const contract = new ethers.Contract(tokenAddress, tokenABI, provider);
+  try {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const address = await signer.getAddress();
 
-  const rawBalance = await contract.balanceOf(address);
-  const decimals = await contract.decimals();
-  const balance = ethers.utils.formatUnits(rawBalance, decimals);
+    const contract = new ethers.Contract(tokenAddress, tokenABI, provider);
+    const rawBalance = await contract.balanceOf(address);
+    const decimals = await contract.decimals();
 
-  document.getElementById("wallet-balance").innerText = `Saldo BRAZ: ${balance}`;
+    const balance = ethers.utils.formatUnits(rawBalance, decimals);
+    document.getElementById("wallet-balance").innerText = `Saldo BRAZ: ${balance}`;
+  } catch (error) {
+    console.error("Erro ao buscar saldo:", error);
+    document.getElementById("wallet-balance").innerText = "Erro ao obter saldo.";
+  }
 }
 
-// Função para adicionar ou trocar para a Binance Smart Chain
+// Troca para Binance Smart Chain
 async function switchToBSC() {
   const bscMainnet = {
     chainId: '0x38',
