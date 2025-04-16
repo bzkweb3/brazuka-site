@@ -18,8 +18,9 @@ body {
 header {
   text-align: center;
   padding: 40px 20px;
-  background: linear-gradient(to bottom, #00ff88, #111); /* Verde vibrante até preto */
+  background-color: #181818;
   border-bottom: 2px solid #FFD700;
+
 }
 
 header img {
