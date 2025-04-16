@@ -1,94 +1,196 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brazuka Token</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BRAZUKA Token</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0a0f0a;
+      color: #fff;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: linear-gradient(to right, #d4af37, #76b947); /* amarelo p/ verde */
+      color: #000;
+      font-weight: bold;
+    }
+
+    .wallet-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .wallet-address {
+      font-size: 0.9rem;
+      color: #000;
+    }
+
+    .connect-button {
+      padding: 8px 14px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .banner {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px 0;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    button {
+      background-color: #76b947;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input {
+      padding: 8px;
+      margin-top: 5px;
+      width: 100px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    a {
+      color: #76b947;
+    }
+
+  </style>
 </head>
-<body>  <header>
-    <img src="images/logomarca.png" alt="Logomarca Brazuka">
-    <h1>Brazuka Token</h1>
-    <p>Comemore. Invista. Colecione.</p>
-    <a class="cta" href="#sobre"><i class="fas fa-arrow-down"></i> Conheça o Projeto</a>
-    <br><br>
-    <button class="cta" onclick="connectWallet()"><i class="fas fa-wallet"></i> Conectar Wallet</button>
-    <p id="wallet-address" style="margin-top:10px; color:#FFD700; word-break: break-all;"></p>
-<p id="wallet-balance" style="color:#0f0; font-weight:bold;"></p>
-  </header>  <section id="mascote" style="text-align:center; background:#181818;">
-    <h2><i class="fas fa-fire"></i> Nosso Mascote</h2>
-    <img src="images/mascote.png" alt="Mascote Brazuka" class="mascote" style="max-width:200px; margin-top:15px;">
-    <p style="margin-top:10px; color:#ccc;">O Tucano Brazuka representa a força tropical do nosso projeto. Com corrente dourada e óculos escuros, ele voa alto rumo à inovação!</p>
-  </section>  <section id="sobre">
-    <h2><i class="fas fa-info-circle"></i> Sobre o Projeto</h2>
-    <p>O Brazuka Token é a materialização de um sonho nacional: unir o espírito brasileiro com a inovação da blockchain. Nosso projeto nasce com propósito, identidade e uma comunidade forte.</p><h2><i class="fas fa-question-circle"></i> Por que Brazuka?</h2>
+<body>
 
-<h3><i class="fas fa-coins"></i> Staking Premiado</h3>
-<p>Ganhe recompensas mensais por manter seus tokens em staking.</p>
-
-<h3><i class="fas fa-chart-line"></i> Distribuição de Lucros</h3>
-<p>Parte das taxas retornam para os holders e participantes ativos.</p>
-
-<h3><i class="fas fa-image"></i> NFTs Exclusivos</h3>
-<p>Itens colecionáveis que celebram a identidade do projeto.</p>
-
-<h3><i class="fas fa-shield-alt"></i> Foco em Segurança</h3>
-<p>Contrato auditado, funções moduláveis e sistema anti-whale.</p>
-
-<h2><i class="fas fa-road"></i> Nosso Caminho</h2>
-<ul>
-  <li><strong>Fase 1:</strong> Lançamento do Token e Primeira Moeda Comemorativa</li>
-  <li><strong>Fase 2:</strong> NFTs e Edição Colecionável</li>
-  <li><strong>Fase 3:</strong> Plataforma de Staking e Benefícios</li>
-  <li><strong>Fase 4:</strong> Desenvolvimento da Blockchain Brazuka</li>
-</ul>
-
-<h2><i class="fas fa-chart-pie"></i> Tokenomics</h2>
-<ul>
-  <li>12% na compra: 4% Liquidez, 4% Staking, 2% Marketing, 2% Recompra</li>
-  <li>50% na venda: 20% Liquidez, 10% Benefício, 6% Marketing, 12% Recompra, 2% Queima</li>
-  <li>Anti-whale, cooldown de 60s, limite de 5% por carteira</li>
-</ul>
-
-<h2><i class="fas fa-shopping-cart"></i> Como Comprar</h2>
-<ol>
-  <li>Instale a carteira MetaMask</li>
-  <li>Adicione a rede Binance Smart Chain</li>
-  <li>Copie o contrato do BRAZUKA e cole na PancakeSwap</li>
-  <li>Troque BNB por BRAZUKA</li>
-  <li>Segure seus tokens e aproveite os benefícios</li>
-</ol>
-
-  </section>  <footer>
-    <p>© 2025 Brazuka Token. Todos os direitos reservados.</p>
-    <p><i class="fab fa-github"></i> <a href="https://github.com/bzkweb3">@bzkweb3</a> | <i class="fas fa-envelope"></i> brazukatoken@gmail.com</p>
-    <div class="marca-mae">
-      <p>Projeto associado à:</p>
-      <img src="images/Dominando-cripto.png" alt="Dominando o Cripto"style="max-width:200px; margin-top:15px;">
+  <!-- Barra superior -->
+  <div class="top-bar">
+    <div>BRAZUKA</div>
+    <div class="wallet-info">
+      <span id="wallet-address" class="wallet-address">Wallet: desconectada</span>
+      <button id="connectButton" class="connect-button">Conectar Wallet</button>
     </div>
-  </footer>  <script>
+  </div>
+
+  <!-- Banner -->
+  <img src="banner.png" alt="Banner Brazuka" class="banner" />
+
+  <!-- Conteúdo principal -->
+  <div class="container">
+
+    <div class="card">
+      <h2>Seu saldo BRAZUKA</h2>
+      <p id="balance">0 BRAZ</p>
+    </div>
+
+    <div class="card">
+      <h2>Comprar Token</h2>
+      <a href="https://pancakeswap.finance/swap?outputCurrency=0x935814FF77528d57AE6Fc94bC70f09eAcC89ceDE" target="_blank">
+        Comprar BRAZUKA na PancakeSwap
+      </a>
+    </div>
+
+    <div class="card">
+      <h2>Staking</h2>
+      <input type="number" id="stakeAmount" placeholder="Qtd. BRAZ"/>
+      <br />
+      <button onclick="stakeTokens()">Fazer Staking</button>
+      <p id="stakingStatus">Status: Aguardando ação...</p>
+      <p id="lockTime">Tempo restante de bloqueio: --</p>
+      <p id="bonusInfo">Bônus estimado: --</p>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+  <script>
+    let provider;
+    let signer;
+    let userAddress;
+    const tokenAddress = "0x935814FF77528d57AE6Fc94bC70f09eAcC89ceDE";
+    const tokenABI = [
+      "function balanceOf(address) view returns (uint256)",
+      "function decimals() view returns (uint8)"
+    ];
+
     async function connectWallet() {
       if (window.ethereum) {
-        try {
-          const provider = new ethers.providers.Web3Provider(window.ethereum);
-          await provider.send("eth_requestAccounts", []);
-          const signer = provider.getSigner();
-          const address = await signer.getAddress();
-          document.getElementById("wallet-address").innerText = `Conectado: ${address}`;
-        } catch (error) {
-          alert("Conexão recusada.");
-        }
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        signer = provider.getSigner();
+        userAddress = await signer.getAddress();
+        document.getElementById("wallet-address").textContent = `Wallet: ${shortenAddress(userAddress)}`;
+        getBalance();
+        updateStakingInfo();
       } else {
-        alert("MetaMask não detectado.");
+        alert("MetaMask não encontrada.");
       }
     }
+
+    function shortenAddress(address) {
+      return address.slice(0, 6) + "..." + address.slice(-4);
+    }
+
+    async function getBalance() {
+      const contract = new ethers.Contract(tokenAddress, tokenABI, provider);
+      const balance = await contract.balanceOf(userAddress);
+      const decimals = await contract.decimals();
+      const formatted = ethers.utils.formatUnits(balance, decimals);
+      document.getElementById("balance").textContent = `${formatted} BRAZ`;
+    }
+
+    function stakeTokens() {
+      const amount = document.getElementById("stakeAmount").value;
+      document.getElementById("stakingStatus").textContent = `Você colocou ${amount} BRAZ em staking!`;
+      // Simula bloqueio por 20 dias
+      const now = new Date();
+      const unlock = new Date(now.getTime() + 20 * 24 * 60 * 60 * 1000);
+      localStorage.setItem("brazuka_lock", unlock.toISOString());
+      updateStakingInfo();
+    }
+
+    function updateStakingInfo() {
+      const lock = localStorage.getItem("brazuka_lock");
+      if (lock) {
+        const unlock = new Date(lock);
+        const now = new Date();
+        const diff = unlock - now;
+        if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          document.getElementById("lockTime").textContent = `Tempo restante de bloqueio: ${days} dias`;
+          document.getElementById("bonusInfo").textContent = `Bônus estimado: +4%`;
+        } else {
+          document.getElementById("lockTime").textContent = "Staking liberado!";
+          document.getElementById("bonusInfo").textContent = "Bônus disponível para saque.";
+        }
+      }
+    }
+
+    document.getElementById("connectButton").addEventListener("click", connectWallet);
   </script>
-  <script src="script.js"></script>
-  <a href="https://pancakeswap.finance/swap?outputCurrency=0x935814FF77528d57AE6Fc94bC70f09eAcC89ceDE&chain=testnet" target="_blank" id="buy-btn-fixed">
-  Comprar BRAZ
-  </a>
 </body>
 </html>
