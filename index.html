@@ -1,89 +1,112 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
+<!DOCTYPE html><html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brazuka Token</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #121212, #1a1a1a);
+      color: white;
+    }
+    header {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    header img {
+      width: 80px;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin: 20px 0 10px;
+    }
+    p.sub {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+    .btn {
+      background: #ffcc00;
+      color: #000;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-around;
+    }
+    .feature {
+      flex: 1 1 200px;
+      background: #222;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+    .roadmap {
+      margin-top: 40px;
+      border-left: 2px solid #ffcc00;
+      padding-left: 20px;
+    }
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
-
 <body>
   <header>
-    <div class="container">
-      <!-- Logomarca: maior -->
-<img src="images/logomarca.png" alt="logo Brazuka" style="width: 300px; height: auto;" />
-      <nav>
-        <ul>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#tokenomics">Tokenomics</a></li>
-          <li><a href="#nfts">NFTs</a></li>
-          <li><a href="#roadmap">Roadmap</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1>Bem-vindo ao Brazuka Token (BRAZ)</h1>
-        <p>O projeto nacional que vai impulsionar a Web3 com ousadia, inovação e um toque de brasilidade.</p>
-        <a href="#staking" class="btn">Staking</a>
-        <a href="#comprar" class="btn btn-secondary">Comprar BRAZ</a>
+    <img src="mascote.png" alt="Mascote Brazuka" style="width: 120px;">
+    <h1>Brazuka Token</h1>
+    <p class="sub">Comemore. Invista. Colecione.</p>
+    <button class="btn" onclick="document.getElementById('sobre').scrollIntoView({behavior: 'smooth'});">Conheça o Projeto</button>
+  </header>  <section id="sobre" class="section">
+    <h2>Sobre o Projeto</h2>
+    <p>O Brazuka Token é a materialização de um sonho nacional: unir o espírito brasileiro com a inovação da blockchain. Nosso projeto nasce com propósito, identidade e uma comunidade forte.</p>
+  </section>  <section class="section">
+    <h2>Por que Brazuka?</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Staking Premiado</h3>
+        <p>Ganhe recompensas mensais por manter seus tokens em staking.</p>
       </div>
-      <div class="hero-image">
-        <img src="images/mascote.png" alt="Mascote Brazuka" style="width: 120px; height: auto;" />
+      <div class="feature">
+        <h3>Distribuição de Lucros</h3>
+        <p>Parte das taxas retornam para os holders e participantes ativos.</p>
+      </div>
+      <div class="feature">
+        <h3>NFTs Exclusivos</h3>
+        <p>Itens colecionáveis que celebram a identidade do projeto.</p>
+      </div>
+      <div class="feature">
+        <h3>Foco em Segurança</h3>
+        <p>Contrato auditado, funções moduláveis e sistema anti-whale.</p>
       </div>
     </div>
-  </section>
-
-  <section id="sobre" class="info-section">
-    <div class="container">
-      <h2>Sobre o Projeto</h2>
-      <p>Brazuka é mais que um token: é um movimento. Criado na Binance Smart Chain, nossa missão é empoderar holders com staking, colecionáveis NFT, recompensas e uma economia transparente.</p>
+  </section>  <section class="section">
+    <h2>Nosso Caminho</h2>
+    <div class="roadmap">
+      <p><strong>Fase 1:</strong> Lançamento do Token e Primeira Moeda Comemorativa</p>
+      <p><strong>Fase 2:</strong> NFTs e Edição Colecionável</p>
+      <p><strong>Fase 3:</strong> Plataforma de Staking e Benefícios</p>
+      <p><strong>Fase 4:</strong> Desenvolvimento da Blockchain Brazuka</p>
     </div>
-  </section>
-
-  <section id="tokenomics" class="info-section">
-    <div class="container">
-      <h2>Tokenomics</h2>
-      <ul class="tokenomics-list">
-        <li>🔁 Taxas de Compra: 12% (Liquidez, Staking, Marketing, Recompra)</li>
-        <li>💥 Taxas de Venda: 50% (Queima, Benefício, Recompra, etc.)</li>
-        <li>🧠 Funções Anti-whale, Cooldown, Limite por Carteira</li>
-        <li>🛠️ Liquidez automática com controle manual</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="nfts" class="info-section">
-    <div class="container">
-      <h2>Arte NFT & Colecionáveis</h2>
-      <p>Explore nossas edições limitadas da moeda Brazuka e nosso mascote em versões exclusivas. Um universo de valor e estilo à sua espera.</p>
-      <img src="images/moeda-brazuka.png" alt="Moeda NFT Brazuka" class="featured-image" />
-    </div>
-  </section>
-
-  <section id="roadmap" class="info-section">
-    <div class="container">
-      <h2>Roadmap</h2>
-      <ol>
-        <li>Lançamento do Token BRAZ</li>
-        <li>Venda Privada & Listagem</li>
-        <li>Primeira NFT Edição Limitada</li>
-        <li>Lançamento do Staking</li>
-        <li>Expansão Visual e Blockchain Própria</li>
-      </ol>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Brazuka Token • Powered by Web3 🇧🇷</p>
-    </div>
+  </section>  <footer>
+    <p>© 2025 Brazuka Token. Todos os direitos reservados.</p>
+    <p>GitHub: <a href="https://github.com/bzkweb3" style="color:#ffcc00;">@bzkweb3</a> | Contato: brazukatoken@gmail.com</p>
   </footer>
 </body>
-
 </html>
