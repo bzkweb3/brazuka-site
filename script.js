@@ -17,7 +17,8 @@ async function connectWallet() {
       const address = await signer.getAddress();
 
       // Mostra o endereço conectado no HTML
-      document.getElementById("wallet-address").innerText = `Conectado: ${address}`;
+      const shortened = `${address.slice(0, 6)}...${address.slice(-4)}`;
+document.getElementById("wallet-address").innerText = `Conectado: ${shortened}`;
       document.querySelector('button.cta').innerText = "Wallet Conectada";
 
       console.log("Conexão estabelecida:", address);
@@ -28,6 +29,26 @@ async function connectWallet() {
   } else {
     alert("MetaMask não detectado.");
   }
+}
+
+const tokenABI = [
+  "function balanceOf(address owner) view returns (uint256)",
+  "function decimals() view returns (uint8)"
+];
+
+async function mostrarSaldoBRAZ() {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  const address = await signer.getAddress();
+  
+  const tokenAddress = "0xSEU_CONTRATO_AQUI"; // Coloque o endereço do contrato BRAZUKA
+  const contract = new ethers.Contract(tokenAddress, tokenABI, provider);
+
+  const rawBalance = await contract.balanceOf(address);
+  const decimals = await contract.decimals();
+  const balance = ethers.utils.formatUnits(rawBalance, decimals);
+
+  document.getElementById("wallet-balance").innerText = `Saldo BRAZ: ${balance}`;
 }
 
 // Função para adicionar ou trocar para a Binance Smart Chain
